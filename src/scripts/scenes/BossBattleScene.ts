@@ -7,6 +7,7 @@ import Unit from "../objects/Unit";
 import LevelTwoScene from "./levelTwoScene";
 
 export default class BossBattleScene extends Phaser.Scene {
+    combatMusic:Phaser.Sound.BaseSound;
     heroes: Unit[];
     activeID: number;
     activeHero: Unit;
@@ -42,6 +43,8 @@ export default class BossBattleScene extends Phaser.Scene {
     create() {
         // load background image
         //this.cameras.main.("0x8B8BAE");
+        this.combatMusic = this.sound.add('combatmusic', {loop: true, volume: 0.5});
+        this.combatMusic.play
 
 
         this.parentScene = this.scene.get("LevelTwoScene");
@@ -62,7 +65,7 @@ export default class BossBattleScene extends Phaser.Scene {
     }
 
     startBattle() {
-
+        
         let height = this.game.config.height as number;
         let width = this.game.config.width as number;
 
@@ -181,11 +184,12 @@ export default class BossBattleScene extends Phaser.Scene {
     }
 
     nextTurn() {
-        if(this.checkEndBattle() || this.surrenderFlag || !this.activeHero.isAlive()) {
+        if(this.checkEndBattle() || this.surrenderFlag) {
             if (this.extraLife) {
                 this.extraLife = false;
                 this.events.emit("Message", "Power Up: Extra life used!");
                 this.heroes.forEach(this.rebirth);
+                this.playerHealth.update(this.activeHero);
             } else {           
                 this.endBattleDisplay();
             }
@@ -243,6 +247,7 @@ export default class BossBattleScene extends Phaser.Scene {
         }
         else {
             endMessage = "You fainted!"
+            this.victory = false;
         }
 
         this.events.emit("Message", endMessage);
@@ -258,10 +263,11 @@ export default class BossBattleScene extends Phaser.Scene {
         }
         var loss = true;
         // if all heroes are dead we have game over
-        for(var i = 0; i < this.heroes.length; i++) {
-            if(this.heroes[i].alive)
-                loss = false;
+        
+        if(this.activeHero.getHP() > 0) {
+            loss = false;
         }
+
 
         if (vict) {
             this.victory = true;
@@ -284,8 +290,11 @@ export default class BossBattleScene extends Phaser.Scene {
         this.playerHealth.destroy();
         this.enemyHealth.destroy();
         this.scene.sleep('BossUIScene');
-        this.scene.switch('LevelTwoScene');
+        this.scene.sleep();
+        this.game.scene.start('EndingScene', {victory: this.victory});
         this.registry.set("Battle", 1);
+        this.combatMusic.stop
+
     }
 
     getHeroes() {
