@@ -740,7 +740,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fish-out-of-water/betagen.vendors.3239f506094570ea756f.bundle.js"
   },
   {
-    "revision": "c924790274f906f8ed9ee179b4fe57d1",
+    "revision": "16007d3ff2b602b8883dafd321b2abe9",
     "url": "/fish-out-of-water/betaindex.html"
   },
   {
