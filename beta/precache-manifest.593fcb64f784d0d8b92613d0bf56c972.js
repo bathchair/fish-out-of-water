@@ -732,15 +732,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fish-out-of-water/betafavicon.ico"
   },
   {
-    "revision": "df975bb640ed4f644bb4",
-    "url": "/fish-out-of-water/betagen.main.965e51b27d57be9aded5.bundle.js"
+    "revision": "a89df9fbb59e5a1ba491",
+    "url": "/fish-out-of-water/betagen.main.6ec3ed8adbf16a0fa8b7.bundle.js"
   },
   {
     "revision": "350e36daaaf9e0e07797",
     "url": "/fish-out-of-water/betagen.vendors.3239f506094570ea756f.bundle.js"
   },
   {
-    "revision": "2fb51dc72d732837a47ce0c289aed5a9",
+    "revision": "fe5eb332179ff14b4c2ace5e5e73a857",
     "url": "/fish-out-of-water/betaindex.html"
   },
   {
