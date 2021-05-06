@@ -28,7 +28,10 @@ export default class Unit extends Phaser.GameObjects.Sprite {
     }
 
     attack(target) {
-        target.takeDamage(this.damage);
+        var max = this.damage + 10;
+        var min = this.damage - 10;
+        var randDamage = Math.floor(Math.random() * (max-min+1)) + min;
+        target.takeDamage(randDamage);
 
         if (target instanceof Enemy) {
             this.scene.getEnemyHealth().update(target);
@@ -36,7 +39,7 @@ export default class Unit extends Phaser.GameObjects.Sprite {
             this.scene.getPlayerHealth().update(this.scene.activeHero);
         }
 
-        this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + this.damage + " damage");
+        this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + randDamage + " damage");
     }
 
     shapeShift(previous) {
