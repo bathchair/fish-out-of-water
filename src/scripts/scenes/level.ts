@@ -18,6 +18,7 @@ export default class Level extends Phaser.Scene {
 	//Map information
 	minimap
 	pressed:boolean
+	firstTimeInBattle:boolean
 	map: Phaser.Tilemaps.Tilemap;
 	color:Phaser.Tilemaps.TilemapLayer;
 	background:Phaser.Tilemaps.TilemapLayer;
@@ -59,6 +60,7 @@ export default class Level extends Phaser.Scene {
 	  this.nextSceneKey = nextSceneKey
 	  this.pressed = false
 	  this.delay = false
+	  this.firstTimeInBattle = true
 	}
   
 	preload(){
@@ -148,7 +150,7 @@ export default class Level extends Phaser.Scene {
 
 	  }
 	  //physics collider
-	  //this.physics.add.collider(this.player, this.background)
+	  this.physics.add.collider(this.player, this.background)
 	  this.player.setCollideWorldBounds(true);
 	  this.npcptCollide.angle = 180;
 	  this.physics.add.collider(this.player, this.clog, () =>{
@@ -264,11 +266,14 @@ export default class Level extends Phaser.Scene {
 			this.music.pause()
 			this.bumpSound.play()
 			this.combatMusic.resume()
-			//this.scene.pause(this.sceneKey)
-			//this.scene.launch("BattleScene")
 			this.battlescene = this.scene.get("BattleScene")
 			this.battlescene.setHostScene(this.sceneKey)
-			this.scene.switch('BattleScene');
+			if(this.firstTimeInBattle && this.sceneKey == "LevelOneScene") {
+				this.scene.switch('CombatInstructions')
+				this.firstTimeInBattle = false
+			}
+			else
+				this.scene.switch('BattleScene');
 			image.destroy()
 		})
 	})

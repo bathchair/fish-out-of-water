@@ -27,6 +27,7 @@ export default class CombatInstructions extends Phaser.Scene {
             this.scene.sleep();
             this.scene.setVisible(true, "BattleScene");
             this.scene.setVisible(true, "UIScene");
+            this.scene.switch('BattleScene');
         }
     }
 
