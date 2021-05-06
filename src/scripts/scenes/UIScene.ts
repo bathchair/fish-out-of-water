@@ -103,7 +103,7 @@ export default class UIScene extends Phaser.Scene {
 
         this.events.on("GetInfo", this.onGetInfo, this);
 
-        this.events.on("Help", this.onHelp, this);
+        //this.events.on("Help", this.onHelp, this);
         
         this.events.on("Enemy", this.onEnemy, this);
         
@@ -123,11 +123,11 @@ export default class UIScene extends Phaser.Scene {
         this.battleScene.nextTurn(); 
     }
 
-    onHelp() {
-        this.scene.launch("CombatInstructions");
-        this.battleScene.scene.setVisible(false);
-        this.scene.setVisible(false);
-    }
+    // onHelp() {
+    //     this.scene.launch("CombatInstructions");
+    //     this.battleScene.scene.setVisible(false);
+    //     this.scene.setVisible(false);
+    // }
 
     onEnemy(index) {
         //this.heroesMenu.deselect();
@@ -198,9 +198,10 @@ export default class UIScene extends Phaser.Scene {
                 this.currentMenu.moveSelectionDown();
             } else if(event.code === "Space") {
                 this.currentMenu.confirm();
-            } else if (event.code == Phaser.Input.Keyboard.KeyCodes.H) {
-                this.onHelp();
-            }
+             } 
+            //else if (event.code == Phaser.Input.Keyboard.KeyCodes.H) {
+            //     this.onHelp();
+            // }
         }
     }
 }

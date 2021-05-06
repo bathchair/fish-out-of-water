@@ -268,12 +268,12 @@ export default class Level extends Phaser.Scene {
 			this.combatMusic.resume()
 			this.battlescene = this.scene.get("BattleScene")
 			this.battlescene.setHostScene(this.sceneKey)
-			if(this.firstTimeInBattle && this.sceneKey == "LevelOneScene") {
+			//if(this.firstTimeInBattle && this.sceneKey == "LevelOneScene") {
 				this.scene.switch('CombatInstructions')
-				this.firstTimeInBattle = false
-			}
-			else
-				this.scene.switch('BattleScene');
+			// 	this.firstTimeInBattle = false
+			// }
+			// else
+			// 	this.scene.switch('BattleScene');
 			image.destroy()
 		})
 	})
