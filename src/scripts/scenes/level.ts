@@ -472,6 +472,7 @@ export default class Level extends Phaser.Scene {
 			//var width = 0;
 			var elem = document.getElementById('pmeterBar');
 
+			// pmeter attributes
 			if (this.width < 0) {
 				this.width = 0;
 				if (elem != null) {
