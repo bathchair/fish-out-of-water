@@ -648,7 +648,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fish-out-of-water/betaassets/img/combatFirst.png"
   },
   {
-    "revision": "0237c5fd72ea0cb5684bd4baf7aad8a1",
+    "revision": "9b4e07d5818d33c7f6ade4ca6316f9bc",
     "url": "/fish-out-of-water/betaassets/img/combatSec.png"
   },
   {
@@ -732,15 +732,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fish-out-of-water/betafavicon.ico"
   },
   {
-    "revision": "e03d5d61f0e90a3b08f9",
-    "url": "/fish-out-of-water/betagen.main.2d64adf9a485bd3ef630.bundle.js"
+    "revision": "c2482db7275ec2439470",
+    "url": "/fish-out-of-water/betagen.main.828830cebc56105c8971.bundle.js"
   },
   {
     "revision": "350e36daaaf9e0e07797",
     "url": "/fish-out-of-water/betagen.vendors.3239f506094570ea756f.bundle.js"
   },
   {
-    "revision": "be5d6f5eea9de1c4baab4c9a8c0ea559",
+    "revision": "c924790274f906f8ed9ee179b4fe57d1",
     "url": "/fish-out-of-water/betaindex.html"
   },
   {
