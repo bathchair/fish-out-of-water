@@ -70,6 +70,7 @@ export default class Level extends Phaser.Scene {
 	}
 	
 	create() {
+		this.pauseMovement = false;
 		//music
 		this.music.play();
 		this.questionMusic.play();
@@ -147,7 +148,7 @@ export default class Level extends Phaser.Scene {
 
 	  }
 	  //physics collider
-	  this.physics.add.collider(this.player, this.background)
+	  //this.physics.add.collider(this.player, this.background)
 	  this.player.setCollideWorldBounds(true);
 	  this.npcptCollide.angle = 180;
 	  this.physics.add.collider(this.player, this.clog, () =>{
@@ -179,6 +180,8 @@ export default class Level extends Phaser.Scene {
 				   this.game.scene.start('BossBattleScene', {extraDamage: false, extraHealth: false, extraLife: false}) 
 				   this.combatMusic.resume()
 			}
+			this.player.y = this.player.y - 20;
+			this.pauseMovement = true
 			this.music.pause()
 			this.bumpSound.play()
 		})
@@ -196,6 +199,8 @@ export default class Level extends Phaser.Scene {
 		  else{
 			this.game.scene.start('QuestionScene1');
 		  }
+		  this.player.x = this.startpt.x
+		  this.player.y = this.startpt.y
 	  })
 	  this.physics.add.collider(this.player, this.npc1Collide, () =>{
 		this.music.pause()	
@@ -210,6 +215,8 @@ export default class Level extends Phaser.Scene {
 		else{
 			this.game.scene.start('QuestionScene2');
 		}
+		this.player.x = this.startpt.x
+		this.player.y = this.startpt.y
 	})
 	this.physics.add.collider(this.player, this.npc2Collide, () =>{
 		this.music.pause()
@@ -224,6 +231,8 @@ export default class Level extends Phaser.Scene {
 		else{
 			this.game.scene.start('QuestionScene3');
 		}
+		this.player.x = this.startpt.x
+		this.player.y = this.startpt.y
 	});
 	  
 	  //Initialize cameras to follow fish
@@ -472,6 +481,7 @@ export default class Level extends Phaser.Scene {
 			//var width = 0;
 			var elem = document.getElementById('pmeterBar');
 
+			// pmeter attributes
 			if (this.width < 0) {
 				this.width = 0;
 				if (elem != null) {
