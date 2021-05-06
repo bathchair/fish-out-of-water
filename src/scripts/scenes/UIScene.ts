@@ -198,6 +198,8 @@ export default class UIScene extends Phaser.Scene {
                 this.currentMenu.moveSelectionDown();
             } else if(event.code === "Space") {
                 this.currentMenu.confirm();
+            } else if (event.code == Phaser.Input.Keyboard.KeyCodes.H) {
+                this.onHelp();
             }
         }
     }

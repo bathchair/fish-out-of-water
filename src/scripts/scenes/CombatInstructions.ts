@@ -23,7 +23,7 @@ export default class CombatInstructions extends Phaser.Scene {
             this.firstSlide();
         } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.RIGHT) {
             this.secondSlide();
-        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.X) {
+        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.H) {
             this.scene.sleep();
             this.scene.setVisible(true, "BattleScene");
             this.scene.setVisible(true, "UIScene");
