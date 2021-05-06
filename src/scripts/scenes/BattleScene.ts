@@ -74,15 +74,15 @@ export default class BattleScene extends Phaser.Scene {
 
         // enemy options
         var jelly = new Enemy(this, this.fightPos2, fightHeight, "enemy-jellyfish", null, "Jelly", this.playerHP, 15, "jellyfish");
-        var orcaE = new Enemy(this, this.fightPos2, fightHeight, "shift-orca", null, "Orca", 100, 30, "orca"); 
+        var orcaE = new Enemy(this, this.fightPos2, fightHeight, "shift-orca", null, "Orca", 100, 25, "orca"); 
         var shrimpE = new Enemy(this, this.fightPos2, fightHeight, "shift-shrimp", null, "Shrimp", 50, 5, "shrimp");
 
-        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", this.playerHP, 40, "orca");
+        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", this.playerHP, 30, "orca");
         this.add.existing(orca)
         orca.visible = false;
         orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
 
-        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 5, "shrimp");
+        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 10, "shrimp");
         this.add.existing(shrimp)
         shrimp.visible = false;
         shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");

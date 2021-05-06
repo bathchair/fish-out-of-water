@@ -35,11 +35,11 @@ export default class Unit extends Phaser.GameObjects.Sprite {
 
         if (target instanceof Enemy) {
             this.scene.getEnemyHealth().update(target);
+            this.scene.events.emit("Message", "You attack " + target.type + " for " + randDamage + " damage");
         } else {
             this.scene.getPlayerHealth().update(this.scene.activeHero);
+            this.scene.events.emit("Message", this.type + " attacks you for " + randDamage + " damage");
         }
-
-        this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + randDamage + " damage");
     }
 
     shapeShift(previous) {
