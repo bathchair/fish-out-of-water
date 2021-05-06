@@ -82,7 +82,7 @@ export default class BattleScene extends Phaser.Scene {
         orca.visible = false;
         orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
 
-        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 10, "shrimp");
+        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 15, "shrimp");
         this.add.existing(shrimp)
         shrimp.visible = false;
         shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");
@@ -176,6 +176,7 @@ export default class BattleScene extends Phaser.Scene {
 
     updateUnits() {
         this.units[0] = this.activeHero;
+        this.playerHealth.updateEntity(this.activeHero);
     }
 
     nextTurn() {

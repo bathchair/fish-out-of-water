@@ -49,6 +49,10 @@ export default class HealthBar extends Phaser.GameObjects.Container {
 
     }
 
+    updateEntity(entity) {
+        this.entity = entity;
+    }
+
     update(character: Unit)
     {
         //this.nameText.text = character.name;
