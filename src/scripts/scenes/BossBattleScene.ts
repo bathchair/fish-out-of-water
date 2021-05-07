@@ -181,6 +181,7 @@ export default class BossBattleScene extends Phaser.Scene {
     }
     updateUnits() {
         this.units[0] = this.activeHero;
+        this.playerHealth.updateEntity(this.activeHero);
     }
 
     nextTurn() {
