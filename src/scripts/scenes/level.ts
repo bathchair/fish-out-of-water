@@ -369,6 +369,7 @@ export default class Level extends Phaser.Scene {
   update(){
 	if (this.input.keyboard.addKey('M').isDown) {
 		this.minimap.setVisible(true)
+		this.player.setTint(0xff0000)
 		this.text.setVisible(false)
 		this.messageBox.setVisible(false)
 		this.pipeMsg.setVisible(false)
@@ -378,6 +379,7 @@ export default class Level extends Phaser.Scene {
 	if (this.input.keyboard.addKey('M').isUp) {
 		if(this.pressed) {
 			this.minimap.setVisible(false)
+			this.player.setTint(0xffffff)
 			this.text.setVisible(true)
 			this.pauseMovement = false;
 			this.pressed = false
