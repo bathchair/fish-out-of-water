@@ -797,6 +797,8 @@ export default class Level extends Phaser.Scene {
 	}
 		//npc 3 (last, if right go to boss or end or whatever)
 		QuestionSix(){
+			this.player.x = 500
+			this.player.y = 500
 			if (this.registry.get("F1") == 'A'){
 				//right answer
 				if(this.nextSceneKey != '')
