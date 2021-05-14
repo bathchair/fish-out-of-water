@@ -36,13 +36,14 @@ export default class CombatInstructions extends Phaser.Scene {
             this.currImage.destroy();
         }
         var slide = this.add.image(this.width/2,this.height/2,'combatFirst');
+        slide.setScale(0.65);
         this.currImage = slide;
     }
 
     secondSlide() {
         this.currImage.destroy();
         var slide = this.add.image(this.width/2,this.height/2,'combatSec');
-        slide.setScale(0.95);
+        slide.setScale(0.65);
         this.currImage = slide;
     }
 
