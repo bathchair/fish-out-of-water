@@ -21,7 +21,6 @@ export default class BattleScene extends Phaser.Scene {
     playerHealth: HealthBar;
     playerHP: number;
     enemyHealth: HealthBar;
-    isFinalBoss: boolean;
     setEnemies: Enemy[];
     timesInCombat: number;
     prevScene: any;
@@ -29,15 +28,13 @@ export default class BattleScene extends Phaser.Scene {
     fightPos2: number;
     enemiesList: (PlayerCharacter | Enemy)[];
     activeEnemyIndex: number;
+    fightHeight: number;
 
     constructor() {
         super({ key: "BattleScene" });
     }
 
-    create() {
-        // load background image
-        //this.cameras.main.("0x8B8BAE");    
-
+    create() {  
         this.scene.launch("BattleIntro"); 
 
         this.time.addEvent({ delay: 3000, callback: this.begin, callbackScope: this });
@@ -58,7 +55,7 @@ export default class BattleScene extends Phaser.Scene {
         let height = this.game.config.height as number;
         let width = this.game.config.width as number;
 
-        let fightHeight = height/2 - 50;
+        this.fightHeight = height/2 - 50;
         this.fightPos1 = width * .8;
         this.fightPos2 = width * .2;
 
@@ -66,40 +63,15 @@ export default class BattleScene extends Phaser.Scene {
         this.surrenderFlag = false;
         this.playerHP = 100;
 
-        // main combat character
-        var fish = new PlayerCharacter(this, this.fightPos1, fightHeight, "combat", null, "Fish", this.playerHP, 20, "fish");        
-        this.add.existing(fish)
-        fish.anims.play('combat-flounder');
-        fish.setDescription("Name: Fish\nHealth: 100HP\nYour basic fish.\nNo strengths/weaknesses.")
+        this.generateHeroes();
 
-        // enemy options
-        var jelly = new Enemy(this, this.fightPos2, fightHeight, "enemy-jellyfish", null, "Jelly", this.playerHP, 15, "jellyfish");
-        var orcaE = new Enemy(this, this.fightPos2, fightHeight, "shift-orca", null, "Orca", 100, 25, "orca"); 
-        var shrimpE = new Enemy(this, this.fightPos2, fightHeight, "shift-shrimp", null, "Shrimp", 50, 5, "shrimp");
+        this.generateEnemies();
 
-        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", this.playerHP, 30, "orca");
-        this.add.existing(orca)
-        orca.visible = false;
-        orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
-
-        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 15, "shrimp");
-        this.add.existing(shrimp)
-        shrimp.visible = false;
-        shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");
-
-
-
-        // array with heroes
-        this.heroes = [ fish, orca, shrimp ];
-        this.isFinalBoss = false;
         this.activeID = 0;
         this.activeHero = this.heroes[this.activeID];
         this.playerHP;
-        // array with enemies
-        this.enemiesList = [ jelly, orcaE, shrimpE ]
         this.activeEnemyIndex = Math.floor(Math.random() * this.enemiesList.length);
         this.activeEnemy = this.enemiesList[this.activeEnemyIndex];
-        //this.activeEnemy = orcaE;
         this.add.existing(this.activeEnemy);
         this.activeEnemy.anims.play(this.activeEnemy.getTexture());
         this.enemies = [ this.activeEnemy ];
@@ -112,6 +84,38 @@ export default class BattleScene extends Phaser.Scene {
         this.enemyHealth = new HealthBar(this, this.fightPos2, this.activeEnemy.y - 100, this.activeEnemy);
 
         this.index = -1;      
+    }
+
+    generateHeroes() {
+        // main combat character
+        var fish = new PlayerCharacter(this, this.fightPos1, this.fightHeight, "combat", null, "Fish", this.playerHP, 25, "fish");        
+        this.add.existing(fish)
+        fish.anims.play('combat-flounder');
+        fish.setDescription("Name: Fish\nHealth: 100HP\nYour basic fish.\nNo strengths/weaknesses.")
+
+        var orca = new PlayerCharacter(this, this.fightPos1, this.fightHeight, "shift-orca", null, "Orca", this.playerHP, 30, "orca");
+        this.add.existing(orca)
+        orca.visible = false;
+        orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
+
+        var shrimp = new PlayerCharacter(this, this.fightPos1, this.fightHeight, "shift-shrimp", null,"Shrimp", this.playerHP, 15, "shrimp");
+        this.add.existing(shrimp)
+        shrimp.visible = false;
+        shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");
+
+        // array with heroes
+        this.heroes = [ fish, orca, shrimp ];
+    }
+
+    generateEnemies() {
+        // enemy options
+        var jelly = new Enemy(this, this.fightPos2, this.fightHeight, "enemy-jellyfish", null, "Jelly", this.playerHP, 20, "jellyfish");
+        var orcaE = new Enemy(this, this.fightPos2, this.fightHeight, "shift-orca", null, "Orca", 100, 25, "orca"); 
+        var shrimpE = new Enemy(this, this.fightPos2, this.fightHeight, "shift-shrimp", null, "Shrimp", 50, 15, "shrimp");
+        var swordE = new Enemy(this, this.fightPos2, this.fightHeight, "enemy-swordfish", null, "Swordfish", 85, 30, "swordfish");
+        var anglarE = new Enemy(this, this.fightPos2, this.fightHeight, "enemy-anglar", null, "Anglar", 80, 20,  "anglarfish");
+        // array with enemies
+        this.enemiesList = [ jelly, orcaE, shrimpE, swordE, anglarE ]
     }
 
     setHostScene(sceneKey) {
@@ -142,19 +146,10 @@ export default class BattleScene extends Phaser.Scene {
         this.startBattle();
     }
 
-    // randomizing enemy; instance in startBattle and wake
-    /*decideEnemy() {
-        var enemyIndex = 0;
-
-
-        return enemyPick;
-    }*/
-
     shapeShiftHero(index) {
         var tempHP = this.activeHero.getHP();
         var tempHero = this.activeHero;
         this.activeID = index;
-        //this.heroes[this.activeID].setHP(tempHP);
         this.activeHero = this.heroes[this.activeID];
         this.activeHero.setHP(tempHP);
         this.updateUnits();
@@ -166,11 +161,6 @@ export default class BattleScene extends Phaser.Scene {
     }
 
     getInfo(index) {
-        // displaying info about animal
-        // Name: ____
-        // Health: ____
-        // Strengths: ____
-        // Weaknesses: ____
         this.events.emit("Message", this.heroes[index].getDescription());
     }
 

@@ -28,17 +28,31 @@ export default class Unit extends Phaser.GameObjects.Sprite {
     }
 
     attack(target) {
+        var miss = false;
         var max = this.damage + 10;
         var min = this.damage - 10;
         var randDamage = Math.floor(Math.random() * (max-min+1)) + min;
+        var randMiss = Math.floor(Math.random() * 11);
+        if (randMiss == 5) {
+            miss = true;
+            randDamage = 0;
+        }
         target.takeDamage(randDamage);
 
         if (target instanceof Enemy) {
             this.scene.getEnemyHealth().update(target);
-            this.scene.events.emit("Message", "You attack " + target.type + " for " + randDamage + " damage");
+            if (miss) {
+                this.scene.events.emit("Message", "You missed!");
+            } else {
+                this.scene.events.emit("Message", "You attack " + target.type + " for " + randDamage + " damage");
+            }
         } else {
             this.scene.getPlayerHealth().update(this.scene.activeHero);
-            this.scene.events.emit("Message", this.type + " attacks you for " + randDamage + " damage");
+            if (miss) {
+                this.scene.events.emit("Message", this.type + " missed!");
+            } else {
+                this.scene.events.emit("Message", this.type + " attacks you for " + randDamage + " damage");
+            }
         }
     }
 

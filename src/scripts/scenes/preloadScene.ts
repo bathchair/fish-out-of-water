@@ -37,6 +37,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.atlas('shrimp', 'assets/Sprites/PurpleFish.png', 'assets/Sprites/PurpleFish.json')
     this.load.atlas('pufferfish', 'assets/Sprites/PufferFish.png', 'assets/Sprites/PufferFish.json')
     this.load.atlas('surgeon', 'assets/Sprites/SurgeonFish.png', 'assets/Sprites/SurgeonFish.json')
+    this.load.atlas('swordfish','assets/Sprites/SwordFish.png', 'assets/Sprites/SwordFish.json')
+    this.load.atlas('anglarfish', 'assets/Sprites/AnglarFish.png', 'assets/Sprites/AnglarFish.json')
     
     //Audio
     this.load.audio('sewermusic','assets/Music/sewermusic.mp3')
@@ -94,6 +96,20 @@ export default class PreloadScene extends Phaser.Scene {
     this.anims.create({
       key: 'enemy-pufferfish',
       frames: this.anims.generateFrameNames('pufferfish', {start: 1, end: 2, prefix: 'Puffer Fish ', suffix: '.png'}),
+      repeat: -1,
+      frameRate: 5
+    })
+
+    this.anims.create({
+      key: 'enemy-swordfish',
+      frames: this.anims.generateFrameNames('swordfish', {start: 1, end: 2, prefix: 'Swordfish ', suffix: '.png'}),
+      repeat: -1,
+      frameRate: 5
+    })
+
+    this.anims.create({
+      key: 'enemy-anglar',
+      frames: this.anims.generateFrameNames('anglarfish', {start: 1, end: 2, prefix: 'Anglar Fish ', suffix: '.png'}),
       repeat: -1,
       frameRate: 5
     })
