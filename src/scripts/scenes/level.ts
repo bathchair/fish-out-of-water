@@ -52,7 +52,8 @@ export default class Level extends Phaser.Scene {
 	clog;
 	help: Phaser.GameObjects.Text;
 	battlescene: any;
-
+	minimapOnOff;
+	minimapKey;
 	
 	constructor(sceneKey:string, mapKey:string, nextSceneKey:string) {
 	  super({ key: sceneKey })
@@ -73,6 +74,7 @@ export default class Level extends Phaser.Scene {
 	}
 	
 	create() {
+		this.minimapOnOff = 1;
 		this.pauseMovement = false;
 		//music
 		this.music.play();
@@ -90,7 +92,8 @@ export default class Level extends Phaser.Scene {
 	  this.tileset = this.map.addTilesetImage('Pipes', 'pipes')
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
-	 // this.background.setCollisionByProperty({collides: true})
+	  //turn off below for no clip
+	  this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points
@@ -386,7 +389,12 @@ export default class Level extends Phaser.Scene {
 	}
 
   update(){
-	if (this.input.keyboard.addKey('M').isDown) {
+	this.minimapKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
+	if ((Phaser.Input.Keyboard.JustDown(this.minimapKey))) {
+		this.minimapOnOff = this.minimapOnOff + 1;
+		console.log(this.minimapOnOff);
+	}
+	if (this.minimapOnOff % 2 == 0) {
 		this.minimap.setVisible(true)
 		this.player.setTint(0xff0000)
 		this.text.setVisible(false)
@@ -395,14 +403,12 @@ export default class Level extends Phaser.Scene {
 		this.pressed = true
 		this.pauseMovement = true;
 	}
-	if (this.input.keyboard.addKey('M').isUp) {
-		if(this.pressed) {
+	if (this.minimapOnOff % 2 == 1) {
 			this.minimap.setVisible(false)
 			this.player.setTint(0xffffff)
 			this.text.setVisible(true)
 			this.pauseMovement = false;
 			this.pressed = false
-		}
 	}
 	if (this.registry.get("Battle") == 1){
 		this.combatMusic.pause();
