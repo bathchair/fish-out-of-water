@@ -13,6 +13,7 @@ export default class Level extends Phaser.Scene {
 	//Pop up message box 
 	pipeMsg;
 	messageBox;
+	closeButton;
 	text;
 	delay
 	//Map information
@@ -89,7 +90,7 @@ export default class Level extends Phaser.Scene {
 	  this.tileset = this.map.addTilesetImage('Pipes', 'pipes')
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
-	  this.background.setCollisionByProperty({collides: true})
+	 // this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points
@@ -281,44 +282,44 @@ export default class Level extends Phaser.Scene {
 	//helper overlap
 	this.physics.add.overlap(this.player, this.helper1, () =>{
 		this.helper1.destroy()
-		this.createMessageBox("Hey friend!\nSmelly odors are NEVER a good \nsign. Beware! Good luck!")
+		this.helperCreateMessageBox("Hey friend!\nSmelly odors are NEVER a good \nsign. Beware! Good luck!")
 	})
 
 	this.physics.add.overlap(this.player, this.helper2, () =>{
 		this.helper2.destroy()
-		this.createMessageBox("Check out those roots growing into\nour pipes! It’s a shame that hoomans\nplant trees so close to us.")
+		this.helperCreateMessageBox("Check out those roots growing into\nour pipes! It’s a shame that hoomans\nplant trees so close to us.")
 
 	})
 
 	this.physics.add.overlap(this.player, this.helper3, () =>{
 		this.helper3.destroy()
-		this.createMessageBox("Hoomans don't need to be strangers,\nbut their trees need to give our\nhomes at least 10ft!")
+		this.helperCreateMessageBox("Hoomans don't need to be strangers,\nbut their trees need to give our\nhomes at least 10ft!")
 	})
 
 	this.physics.add.overlap(this.player, this.helper4, () =>{
 		this.helper4.destroy()
-		this.createMessageBox("Grease becomes solid once it cools\ndown! This can cause clogs! Soap,\nhowever, dissolves really easily!")
+		this.helperCreateMessageBox("Grease becomes solid once it cools\ndown! This can cause clogs! Soap,\nhowever, dissolves really easily!")
 	})
 
 	
 	this.physics.add.overlap(this.player, this.helper5, () =>{
 		this.helper5.destroy()
-		this.createMessageBox("I had a childhood friend named\nJimmy. One day, he went very far\ninto the sewers and went missing!!!")
+		this.helperCreateMessageBox("I had a childhood friend named\nJimmy. One day, he went very far\ninto the sewers and went missing!!!")
 	})
 
 	this.physics.add.overlap(this.player, this.helper6, () =>{
 		this.helper6.destroy()
-		this.createMessageBox("Eventually, he came back and\ntold us he saw the outside world!\nHe saw a “farm”,“construction”, and\na bunch of hoomans!")
+		this.helperCreateMessageBox("Eventually, he came back and\ntold us he saw the outside world!\nHe saw a “farm”,“construction”, and\na bunch of hoomans!")
 	})
 
 	this.physics.add.overlap(this.player, this.helper7, () =>{
 		this.helper7.destroy()
-		this.createMessageBox("Did you know? Toliet paper\ncan sometimes cause clogs, but it\nis safe to flush down the toliet!")
+		this.helperCreateMessageBox("Did you know? Toliet paper\ncan sometimes cause clogs, but it\nis safe to flush down the toliet!")
 	})
 
 	this.physics.add.overlap(this.player, this.helper8, () =>{
 		this.helper8.destroy()
-		this.createMessageBox("Wastewater can be extremely\ndangerous! Be careful up ahead!\nI believe in you!")
+		this.helperCreateMessageBox("Wastewater can be extremely\ndangerous! Be careful up ahead!\nI believe in you!")
 	})
 
 	//instructions
@@ -341,10 +342,20 @@ export default class Level extends Phaser.Scene {
     	this.messageBox = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "messageBox").setScale(0.1).setScrollFactor(0)
 		this.pipeMsg = this.add.text(this.game.canvas.width/2 -30 , this.game.canvas.height/2 -5, message, { font: "20px Arial", align: "left" }).setColor('#000000').setScale(0.2).setScrollFactor(0)
 		if(this.delay) {
-			this.time.addEvent({ delay: 3250, callback: this.destroyMessageBox, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.destroyMessageBox, callbackScope: this });
 			this.pauseMovement = true;
 		}
    }
+
+   helperCreateMessageBox(message){
+	this.messageBox = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "messageBox").setScale(0.1).setScrollFactor(0)
+	this.closeButton = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2 + 5, "closeButton").setScale(0.1).setScrollFactor(0)
+	this.pipeMsg = this.add.text(this.game.canvas.width/2 -30 , this.game.canvas.height/2 - 10, message, { font: "20px Arial", align: "left" }).setColor('#000000').setScale(0.2).setScrollFactor(0)
+    var spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);	
+	spaceKey.on('down', this.helperDestroyMessageBox, this);
+	this.pauseMovement = true;
+}
+
    mouseFix(){}
    destroyMessageBox(){
 		this.pauseMovement = false;
@@ -352,6 +363,14 @@ export default class Level extends Phaser.Scene {
     	this.messageBox.destroy();
 		//this.help.visible = false;
 	  }
+
+	helperDestroyMessageBox(){
+		this.pauseMovement = false;
+    	this.messageBox.destroy();
+		this.pipeMsg.destroy();
+		this.closeButton.destroy();
+		//this.help.visible = false;
+	}
 	  
 
 	resetZoom(){
@@ -482,8 +501,8 @@ export default class Level extends Phaser.Scene {
 			this.player.y = 580
 			this.registry.set("B1", "Done")
 			this.createMessageBox("*Gasp!* You have been teleported!\nGood job! Right answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById('pmeterBar');
@@ -514,8 +533,8 @@ export default class Level extends Phaser.Scene {
 			this.player.x = 50
 			this.player.y = 110
 			this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -548,8 +567,8 @@ export default class Level extends Phaser.Scene {
 			this.player.y = 245
 			this.registry.set("C1", "Done")
 			this.createMessageBox("*Gasp!* You have been teleported\nGood job! Right answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -577,8 +596,8 @@ export default class Level extends Phaser.Scene {
 			this.player.x = 625
 			this.player.y = 325
 			this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -614,8 +633,8 @@ export default class Level extends Phaser.Scene {
 					this.music.destroy()
 				this.registry.set("A1", "Done")
 				this.createMessageBox("*Gasp!* You have been teleported!\nGood job! Right answer!")
-				this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-				this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+				this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+				this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 				//var width = 0;
 				var elem = document.getElementById("pmeterBar");
@@ -643,8 +662,8 @@ export default class Level extends Phaser.Scene {
 				this.player.x = 220
 				this.player.y = 275
 				this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-				this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-				this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+				this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+				this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 				//var width = 0;
 				var elem = document.getElementById("pmeterBar");
@@ -678,8 +697,8 @@ export default class Level extends Phaser.Scene {
 			this.player.y = 630
 			this.registry.set("D1", "Done")
 			this.createMessageBox("*Gasp!* You have been teleported!\nGood job! Right answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -707,8 +726,8 @@ export default class Level extends Phaser.Scene {
 			this.player.x = 295
 			this.player.y = 630
 			this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -741,8 +760,8 @@ export default class Level extends Phaser.Scene {
 			this.player.y = 195
 			this.registry.set("E1", "Done")
 			this.createMessageBox("*Gasp!* You have been teleported!\nGood job! Right answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -770,8 +789,8 @@ export default class Level extends Phaser.Scene {
 			this.player.x = 180
 			this.player.y = 170
 			this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-			this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-			this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 			//var width = 0;
 			var elem = document.getElementById("pmeterBar");
@@ -834,8 +853,8 @@ export default class Level extends Phaser.Scene {
 				this.player.x = 370
 				this.player.y = 560
 				this.createMessageBox("You've been teleported... but where?\nSorry! Wrong answer!")
-				this.time.addEvent({ delay: 3250, callback: this.zoomOut, callbackScope: this });
-				this.time.addEvent({ delay: 5500, callback: this.resetZoom, callbackScope: this });
+				this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
+				this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
 
 				//var width = 0;
 				var elem = document.getElementById("pmeterBar");
