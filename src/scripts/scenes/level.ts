@@ -18,7 +18,6 @@ export default class Level extends Phaser.Scene {
 	delay
 	//Map information
 	minimap
-	pressed:boolean
 	firstTimeInBattle:boolean
 	map: Phaser.Tilemaps.Tilemap;
 	color:Phaser.Tilemaps.TilemapLayer;
@@ -60,7 +59,6 @@ export default class Level extends Phaser.Scene {
 	  this.sceneKey = sceneKey
 	  this.mapKey = mapKey
 	  this.nextSceneKey = nextSceneKey
-	  this.pressed = false
 	  this.delay = false
 	  this.firstTimeInBattle = true
 	}
@@ -400,15 +398,11 @@ export default class Level extends Phaser.Scene {
 		this.text.setVisible(false)
 		this.messageBox.setVisible(false)
 		this.pipeMsg.setVisible(false)
-		this.pressed = true
-		this.pauseMovement = true;
 	}
 	if (this.minimapOnOff % 2 == 1) {
 			this.minimap.setVisible(false)
 			this.player.setTint(0xffffff)
 			this.text.setVisible(true)
-			this.pauseMovement = false;
-			this.pressed = false
 	}
 	if (this.registry.get("Battle") == 1){
 		this.combatMusic.pause();
