@@ -33,7 +33,8 @@ const config: GameConfig = {
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT
   },
-  scene: [PreloadScene, InstructionScene, LevelOneScene, LevelTwoScene, PipeScene, BattleIntro, BossBattleIntro, CombatInstructions, BattleScene, BossBattleScene, UIScene, BossUIScene,
+  scene: [PreloadScene, InstructionScene, LevelOneScene, LevelTwoScene, PipeScene, 
+    BattleIntro, BossBattleIntro, CombatInstructions, BattleScene, BossBattleScene, UIScene, BossUIScene,
     QuestionScene1,QuestionScene2,QuestionScene3, QuestionScene4, QuestionScene5, QuestionScene6, EndingScene],
   physics: {
     default: 'arcade',

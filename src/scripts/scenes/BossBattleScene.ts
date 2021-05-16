@@ -44,7 +44,10 @@ export default class BossBattleScene extends Phaser.Scene {
         // load background image
         //this.cameras.main.("0x8B8BAE");
         this.combatMusic = this.sound.add('combatmusic', {loop: true, volume: 0.5});
-        this.combatMusic.play
+        this.combatMusic.play();
+        this.combatMusic.pause();
+		this.combatMusic.resume();
+
 
 
         this.parentScene = this.scene.get("LevelTwoScene");
@@ -294,7 +297,8 @@ export default class BossBattleScene extends Phaser.Scene {
         this.scene.sleep();
         this.game.scene.start('EndingScene', {victory: this.victory});
         this.registry.set("Battle", 1);
-        this.combatMusic.stop
+        this.combatMusic.pause();
+        this.combatMusic.stop();
 
     }
 

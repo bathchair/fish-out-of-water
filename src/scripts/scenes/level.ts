@@ -91,7 +91,7 @@ export default class Level extends Phaser.Scene {
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
 	  //turn off below for no clip
-	  this.background.setCollisionByProperty({collides: true})
+	  //this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points
@@ -182,7 +182,6 @@ export default class Level extends Phaser.Scene {
 			}
 			else {
 				   this.game.scene.start('BossBattleScene', {extraDamage: false, extraHealth: false, extraLife: false}) 
-				   this.combatMusic.resume()
 			}
 			this.player.y = this.player.y - 20;
 			this.pauseMovement = true
