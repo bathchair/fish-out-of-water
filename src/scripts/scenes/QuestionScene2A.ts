@@ -12,7 +12,7 @@ export default class QuestionScene2A extends Phaser.Scene {
     create(){
         this.cameras.main.setBackgroundColor("0x8B8BAE");
         //font, color, etc. can be changed later
-        this.txt = this.add.text(0,100,'If there are bad odors and collapsing pipes, what might be the cause?');
+        this.txt = this.add.text(0,100,'If there are bad odors and collapsing pipes, what might be the \ncause?');
         //menu for selecting answer
         this.menus = this.add.container();
         this.QuestionMenu2A = new QuestionMenu2A(118, 153, this);  
