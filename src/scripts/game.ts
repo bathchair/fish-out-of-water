@@ -11,6 +11,11 @@ import QuestionScene3 from './scenes/QuestionScene3'
 import QuestionScene4 from './scenes/QuestionScene4'
 import QuestionScene5 from './scenes/QuestionScene5'
 import QuestionScene6 from './scenes/QuestionScene6'
+import QuestionScene1A from './scenes/QuestionScene1A'
+import QuestionScene2A from './scenes/QuestionScene2A'
+import QuestionScene3A from './scenes/QuestionScene3A'
+import QuestionScene5A from './scenes/QuestionScene5A'
+
 import UIScene from './scenes/UIScene'
 import BossUIScene from './scenes/BossUIScene'
 import PipeScene from './scenes/PipeScene'
@@ -35,7 +40,8 @@ const config: GameConfig = {
   },
   scene: [PreloadScene, InstructionScene, LevelOneScene, LevelTwoScene, PipeScene, 
     BattleIntro, BossBattleIntro, CombatInstructions, BattleScene, BossBattleScene, UIScene, BossUIScene,
-    QuestionScene1,QuestionScene2,QuestionScene3, QuestionScene4, QuestionScene5, QuestionScene6, EndingScene],
+    QuestionScene1, QuestionScene2, QuestionScene3, QuestionScene4, QuestionScene5, QuestionScene6, EndingScene,
+    QuestionScene1A, QuestionScene2A, QuestionScene3A, QuestionScene5A],
   physics: {
     default: 'arcade',
     arcade: {

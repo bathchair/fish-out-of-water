@@ -36,6 +36,9 @@ export default class Level extends Phaser.Scene {
 	npcpt;
 	npc1;
 	npc2;
+	npcptAlternate;
+	npc1Alternate;
+	npc2Alternate;
 	helper1;
 	helper2;
 	helper3;
@@ -47,7 +50,6 @@ export default class Level extends Phaser.Scene {
 	clogpt;
 	pipechecker;
 	pipecheck;
-	Question;
 	clog;
 	help: Phaser.GameObjects.Text;
 	battlescene: any;
@@ -72,6 +74,9 @@ export default class Level extends Phaser.Scene {
 	}
 	
 	create() {
+		this.npcptAlternate = Phaser.Math.Between(1, 2);
+		this.npc1Alternate = Phaser.Math.Between(1, 2);
+		this.npc2Alternate = Phaser.Math.Between(1, 2);
 		this.minimapOnOff = 1;
 		this.pauseMovement = false;
 		//music
@@ -90,8 +95,8 @@ export default class Level extends Phaser.Scene {
 	  this.tileset = this.map.addTilesetImage('Pipes', 'pipes')
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
-	  //turn off below for no clip
-	  //this.background.setCollisionByProperty({collides: true})
+	  //turn off below for noclip
+	  this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points
@@ -194,14 +199,19 @@ export default class Level extends Phaser.Scene {
 		  this.bumpSound.play();
 		  this.questionMusic.resume();
 		  this.pauseMovement = true;
-		  this.Question = 1;
 		  if(this.sceneKey == "LevelTwoScene"){
-			  this.Question+=2;
-			  this.game.scene.start('QuestionScene6')
-		  }
-		  else{
-			this.game.scene.start('QuestionScene1');
-		  }
+			if (this.npcptAlternate == 1 || this.npcptAlternate == 2){
+				this.game.scene.start('QuestionScene6');
+			}	
+		}
+		else{
+			if (this.npcptAlternate == 1){
+				this.game.scene.start('QuestionScene1');
+			}
+			if (this.npcptAlternate == 2){
+				this.game.scene.start('QuestionScene1A');
+			}
+		}
 		  this.player.x = this.startpt.x
 		  this.player.y = this.startpt.y
 	  })
@@ -210,13 +220,18 @@ export default class Level extends Phaser.Scene {
 		this.bumpSound.play();
 		this.questionMusic.resume();
 		this.pauseMovement = true;
-		this.Question = 2;	
 		if(this.sceneKey == "LevelTwoScene"){
-			this.Question+=2;
-			this.game.scene.start('QuestionScene4');
+			if (this.npc1Alternate == 1 || this.npc1Alternate == 2){
+				this.game.scene.start('QuestionScene4');
+			}			
 		}
 		else{
-			this.game.scene.start('QuestionScene2');
+			if (this.npc1Alternate == 1){
+				this.game.scene.start('QuestionScene2');
+			}
+			if (this.npc1Alternate == 2){
+				this.game.scene.start('QuestionScene2A');
+			}
 		}
 		this.player.x = this.startpt.x
 		this.player.y = this.startpt.y
@@ -226,13 +241,21 @@ export default class Level extends Phaser.Scene {
 		this.bumpSound.play();
 		this.questionMusic.resume();
 		this.pauseMovement = true;
-		this.Question = 3;		
 		if(this.sceneKey == "LevelTwoScene"){
-			this.Question+=2;
-			this.game.scene.start('QuestionScene5');
+			if (this.npc2Alternate == 1){
+				this.game.scene.start('QuestionScene5');
+			}
+			if (this.npc2Alternate == 2){
+				this.game.scene.start('QuestionScene5A');
+			}		
 		}
 		else{
-			this.game.scene.start('QuestionScene3');
+			if (this.npc2Alternate == 1){
+				this.game.scene.start('QuestionScene3');
+			}
+			if (this.npc2Alternate == 2){
+				this.game.scene.start('QuestionScene3A');
+			}
 		}
 		this.player.x = this.startpt.x
 		this.player.y = this.startpt.y

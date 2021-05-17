@@ -2,15 +2,14 @@ import { Events } from "matter";
 import Level from "../scenes/level";
 import Menu from "./Menu";
 
-export class QuestionMenu1 extends Menu  {
-    
+export class QuestionMenu1A extends Menu  {
     
     constructor(x, y, scene) {
-        super(x, y, scene);   
-        this.addMenuItem("Soap");
-        this.addMenuItem("Oil")
-        this.addMenuItem("Grease");
-        this.addMenuItem("Motor oil");
+        super(x, y, scene); 
+        this.addMenuItem("It can cool and clog up the pipes");
+        this.addMenuItem("Grease can and should go down the drain")
+        this.addMenuItem("It kills bacteria in the drain");
+        this.addMenuItem("It makes plants grow in the pipes");
 
     }
 
