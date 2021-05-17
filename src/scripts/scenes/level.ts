@@ -96,7 +96,7 @@ export default class Level extends Phaser.Scene {
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
 	  //turn off below for noclip
-	  //this.background.setCollisionByProperty({collides: true})
+	  this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points

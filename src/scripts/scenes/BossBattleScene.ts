@@ -80,21 +80,21 @@ export default class BossBattleScene extends Phaser.Scene {
         this.surrenderFlag = false;
 
         // main combat character
-        var fish = new PlayerCharacter(this, this.fightPos1, fightHeight, "combat", null, "Fish", 150, 25, "fish");        
+        var fish = new PlayerCharacter(this, this.fightPos1, fightHeight, "combat", null, "Fish", 150, "fish", 2);        
         this.add.existing(fish);
         fish.anims.play('combat-flounder');
         fish.setDescription("Name: Fish\nHealth: 100HP\nYour basic fish.\nNo strengths/weaknesses.")
 
-        var finalBoss = new Enemy(this, this.fightPos2, fightHeight, "enemy-pufferfish", null, "Puffer", 150, 30, "pufferfish");
+        var finalBoss = new Enemy(this, this.fightPos2, fightHeight, "enemy-pufferfish", null, "Puffer", 150, "pufferfish", 3);
         this.add.existing(finalBoss);
         finalBoss.anims.play('enemy-pufferfish');
 
-        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", 100, 30, "orca");
+        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", 100, "orca", 3);
         this.add.existing(orca);
         orca.visible = false;
         orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
 
-        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", 100, 15, "shrimp");
+        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", 100, "shrimp", 1);
         this.add.existing(shrimp);
         shrimp.visible = false;
         shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");
@@ -136,6 +136,11 @@ export default class BossBattleScene extends Phaser.Scene {
         //this.scene.launch("BossUIScene");
     }
 
+    updateDamages() {
+        this.activeHero.setDamageForEnemy(this.activeEnemy);
+        this.activeEnemy.setDamageForEnemy(this.activeHero);
+    }
+
     getPlayerHealth() {
         return this.playerHealth;
     }
@@ -173,6 +178,8 @@ export default class BossBattleScene extends Phaser.Scene {
         this.activeHero.visible = true;
         let tempString = this.activeHero.name;
         this.activeHero.anims.play('shift-' + tempString);
+
+        this.updateDamages();
     }
     getInfo(index) {
         // displaying info about animal

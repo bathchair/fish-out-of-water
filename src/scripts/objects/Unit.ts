@@ -2,7 +2,6 @@ import BattleScene from "../scenes/BattleScene";
 import BossBattleScene from "../scenes/BossBattleScene";
 import Enemy from "./Enemy";
 import HealthBar from "./HealthBar";
-import PlayerCharacter from "./PlayerCharacter";
 
 export default class Unit extends Phaser.GameObjects.Sprite {
     maxHP: number;
@@ -14,17 +13,21 @@ export default class Unit extends Phaser.GameObjects.Sprite {
     healthBar: HealthBar;
     description: string;
     tex: string;
+    creature: number;
+    baseDamage: number;
 
-    constructor(scene, x, y, texture, frame, type, hp, damage, name) {
+    constructor(scene, x, y, texture, frame, type, hp, name, creature) {
         super(scene, x, y, texture, frame)
+        this.baseDamage = 20;
         this.scene = scene;
         this.type = type;
         this.maxHP = hp;
         this.hp = hp;
-        this.damage = damage; // default damage      
+        this.damage = this.baseDamage; // default damage      
         this.alive = true;    
         this.name = name;    
         this.tex = texture;
+        this.creature = creature;
     }
 
     attack(target) {
@@ -32,8 +35,8 @@ export default class Unit extends Phaser.GameObjects.Sprite {
         var max = this.damage + 10;
         var min = this.damage - 10;
         var randDamage = Math.floor(Math.random() * (max-min+1)) + min;
-        var randMiss = Math.floor(Math.random() * 11);
-        if (randMiss == 5) {
+        var randMiss = Math.floor(Math.random() * 6);
+        if (randMiss == 2) {
             miss = true;
             randDamage = 0;
         }
@@ -101,6 +104,34 @@ export default class Unit extends Phaser.GameObjects.Sprite {
 
     setDamage(x) {
         this.damage = x;
+    }
+
+    setDamageForEnemy(enemy: Unit) {
+        let enemyCreature = enemy.getCreature();
+
+        let displace = this.creature - enemyCreature;
+
+        switch(displace) {
+            case 0:
+                this.setDamage(this.baseDamage);
+                break;
+            case 1:
+                this.setDamage(this.baseDamage * 1.2);
+                break;
+            case 2:
+                this.setDamage(this.baseDamage * 1.5);
+                break;
+            case -1:
+                this.setDamage(this.baseDamage * .9);
+                break;
+            case -2:
+                this.setDamage(this.baseDamage * .7);
+
+        }
+    }
+
+    getCreature() {
+        return this.creature;
     }
 
     setDescription(desc) {
