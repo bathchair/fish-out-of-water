@@ -96,7 +96,7 @@ export default class Level extends Phaser.Scene {
 	  this.color = this.map.createLayer('Background', this.map.addTilesetImage('background', 'background')).setDepth(-5)
 	  this.background = this.map.createLayer('Sewer', this.tileset)
 	  //turn off below for noclip
-	  this.background.setCollisionByProperty({collides: true})
+	  //this.background.setCollisionByProperty({collides: true})
 	  this.physics.world.setBoundsCollision()
 
 	  //Setting object points
@@ -303,46 +303,80 @@ export default class Level extends Phaser.Scene {
 	})
 
 	//helper overlap
+	//done
 	this.physics.add.overlap(this.player, this.helper1, () =>{
 		this.helper1.destroy()
-		this.helperCreateMessageBox("Hey friend!\nSmelly odors are NEVER a good \nsign. Beware! Good luck!")
+		if( this.npc1Alternate == 1){
+			this.helperCreateMessageBox("Hey friend!\nSmelly odors are NEVER a good \nsign. Beware! Good luck!")
+		}
+		if( this.npc1Alternate == 2){
+			this.helperCreateMessageBox("Hey, watch out!\nSome of these pipes don't seem\nsturdy! Curse those tree roots!")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper2, () =>{
 		this.helper2.destroy()
-		this.helperCreateMessageBox("Check out those roots growing into\nour pipes! It’s a shame that hoomans\nplant trees so close to us.")
-
+		if( this.npc1Alternate == 1){
+			this.helperCreateMessageBox("Hey, watch out!\nSome of these pipes don't seem\nsturdy! Curse those tree roots!")
+		}
+		if( this.npc1Alternate == 2){
+			this.helperCreateMessageBox("Check out those roots growing into\nour pipes! It’s a shame that hoomans\nplant trees so close to us.")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper3, () =>{
 		this.helper3.destroy()
-		this.helperCreateMessageBox("Hoomans don't need to be strangers,\nbut their trees need to give our\nhomes at least 10ft!")
+		if( this.npc2Alternate == 1){
+			this.helperCreateMessageBox("Hoomans don't need to be strangers,\nbut their trees need to give our\nhomes at least 10ft!")
+		}
+		if( this.npc2Alternate == 2){
+			this.helperCreateMessageBox("I always thought that pipes were\ncontrolled by some weird hi-tech stuff.\nBut mostly they just use gravity!")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper4, () =>{
 		this.helper4.destroy()
-		this.helperCreateMessageBox("Grease becomes solid once it cools\ndown! This can cause clogs! Soap,\nhowever, dissolves really easily!")
+		if( this.npcptAlternate == 1 || this.npcptAlternate == 2){
+			this.helperCreateMessageBox("Grease becomes solid once it cools\ndown! This can cause clogs! Soap,\nhowever, dissolves really easily!")
+		}
 	})
 
-	
+	//done
 	this.physics.add.overlap(this.player, this.helper5, () =>{
 		this.helper5.destroy()
-		this.helperCreateMessageBox("I had a childhood friend named\nJimmy. One day, he went very far\ninto the sewers and went missing!!!")
+		if( this.npc1Alternate == 1 || this.npc1Alternate == 2 ){
+			this.helperCreateMessageBox("I had a childhood friend named\nJimmy. One day, he went very far\ninto the sewers and went missing!!!")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper6, () =>{
 		this.helper6.destroy()
-		this.helperCreateMessageBox("Eventually, he came back and\ntold us he saw the outside world!\nHe saw a “farm”,“construction”, and\na bunch of hoomans!")
+		if( this.npc1Alternate == 1 || this.npc1Alternate == 2){
+			this.helperCreateMessageBox("Eventually, he came back and\ntold us he saw the outside world!\nHe saw a “farm” and a bunch of\nhoomans drinking water!")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper7, () =>{
 		this.helper7.destroy()
-		this.helperCreateMessageBox("Did you know? Toliet paper\ncan sometimes cause clogs, but it\nis safe to flush down the toliet!")
+		if( this.npc2Alternate == 1){
+			this.helperCreateMessageBox("Did you know? Toliet paper\ncan sometimes cause clogs, but it\nis safe to flush down the toliet!")
+		}
+		if( this.npc2Alternate == 2){
+			this.helperCreateMessageBox("Always remember the 3 p's!\nPoop, pee, and paper!\nAll can be flushed!")
+		}
 	})
 
+	//done
 	this.physics.add.overlap(this.player, this.helper8, () =>{
 		this.helper8.destroy()
-		this.helperCreateMessageBox("Wastewater can be extremely\ndangerous! Be careful up ahead!\nI believe in you!")
+		if( this.npcptAlternate == 1 || this.npcptAlternate == 2){
+			this.helperCreateMessageBox("Wastewater can be extremely\ndangerous! Be careful up ahead!\nI believe in you!")
+		}
 	})
 
 	//instructions
@@ -412,7 +446,6 @@ export default class Level extends Phaser.Scene {
 	this.minimapKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
 	if ((Phaser.Input.Keyboard.JustDown(this.minimapKey))) {
 		this.minimapOnOff = this.minimapOnOff + 1;
-		console.log(this.minimapOnOff);
 	}
 	if (this.minimapOnOff % 2 == 0) {
 		this.minimap.setVisible(true)
