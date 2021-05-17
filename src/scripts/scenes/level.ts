@@ -55,6 +55,7 @@ export default class Level extends Phaser.Scene {
 	battlescene: any;
 	minimapOnOff;
 	minimapKey;
+	zoomOutOrNot;
 	
 	constructor(sceneKey:string, mapKey:string, nextSceneKey:string) {
 	  super({ key: sceneKey })
@@ -78,6 +79,7 @@ export default class Level extends Phaser.Scene {
 		this.npc1Alternate = Phaser.Math.Between(1, 2);
 		this.npc2Alternate = Phaser.Math.Between(1, 2);
 		this.minimapOnOff = 1;
+		this.zoomOutOrNot = false
 		this.pauseMovement = false;
 		//music
 		this.music.play();
@@ -431,15 +433,17 @@ export default class Level extends Phaser.Scene {
 	  
 
 	resetZoom(){
+		this.zoomOutOrNot = false;
 		this.cameras.main.zoom = 5;
-		this.text.visible = true;
-		this.help.visible = true;
+		this.text.setVisible(true)
+		this.help.setVisible(true)
 	}
 
 	zoomOut(){
+		this.zoomOutOrNot = true
 		this.cameras.main.zoom = 2.5;
-		this.text.visible = false;
-		this.help.visible = false;
+		this.text.setVisible(false)
+		this.help.setVisible(false)
 	}
 
   update(){
@@ -457,7 +461,12 @@ export default class Level extends Phaser.Scene {
 	if (this.minimapOnOff % 2 == 1) {
 			this.minimap.setVisible(false)
 			this.player.setTint(0xffffff)
-			this.text.setVisible(true)
+			if (this.zoomOutOrNot == true){
+				this.text.setVisible(false)
+			}
+			if (this.zoomOutOrNot == false){
+				this.text.setVisible(true)
+			}
 	}
 	if (this.registry.get("Battle") == 1){
 		this.combatMusic.pause();
