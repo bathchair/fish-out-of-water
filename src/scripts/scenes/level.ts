@@ -565,7 +565,7 @@ export default class Level extends Phaser.Scene {
 		if (elem != null){
             var w = (parseInt)(elem.style.width);
 
-                if (w < 100) {
+                if (w > 100) {
                         this.scene.start('EndingScene');
                 }
         }
@@ -639,7 +639,7 @@ export default class Level extends Phaser.Scene {
 		if (elem != null){
             var w = (parseInt)(elem.style.width);
 
-				if (w < 100) {
+				if (w > 100) {
                         this.scene.start('EndingScene');
                 }
         }
@@ -715,7 +715,7 @@ export default class Level extends Phaser.Scene {
 			if (elem != null){
 				var w = (parseInt)(elem.style.width);
 	
-				if (w < 100) {
+				if (w > 100) {
 							this.scene.start('EndingScene');
 					}
 			}
@@ -790,7 +790,7 @@ export default class Level extends Phaser.Scene {
 		if (elem != null){
             var w = (parseInt)(elem.style.width);
 
-			if (w < 100) {
+			if (w > 100) {
                         this.scene.start('EndingScene');
                 }
         }
@@ -864,7 +864,7 @@ export default class Level extends Phaser.Scene {
 		if (elem != null){
             var w = (parseInt)(elem.style.width);
 
-			if (w < 100) {
+			if (w > 100) {
                         this.scene.start('EndingScene');
                 }
         }
@@ -937,7 +937,7 @@ export default class Level extends Phaser.Scene {
 			if (elem != null){
 				var w = (parseInt)(elem.style.width);
 	
-				if (w < 100) {
+				if (w > 100) {
 						this.scene.start('EndingScene');
 					}
 			}
