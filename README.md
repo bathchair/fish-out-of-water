@@ -56,5 +56,7 @@ Link: https://freesound.org/people/GameAudio/sounds/220173/#
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
 
-## Gameplay video link
+The following document if a final version of our concept documentation indicating what has been indicated in the final game versus the concept document. 
+[Design Concept Final.pdf](https://github.com/Spring-2021-CISC374/construction_crew/files/6490463/Design.Concept.Final.pdf)
+
 
