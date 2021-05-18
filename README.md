@@ -7,9 +7,10 @@
 - *Taylor Fields*
 
 ## Instructions for running the game
-- ## Install dependencies
-- $ npm install
+- ## Play online!
+- $ https://spring-2021-cisc374.github.io/fish-out-of-water/final
 - ## Start the local development server (on port 8080)
+- $ npm install 
 - $ npm start
 
 ## Instructions for movement in game
