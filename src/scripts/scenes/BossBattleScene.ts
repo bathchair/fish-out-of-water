@@ -249,6 +249,26 @@ export default class BossBattleScene extends Phaser.Scene {
         this.events.emit("Message", "Player surrendered!");
         this.victory = false;
         this.surrenderFlag = true;
+
+        var elem = document.getElementById("pmeterBar");
+
+            if (this.width >= 100) {
+                this.width = 100;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
+            
+            else {
+                var elem = document.getElementById('pmeterBar');
+                var p = 17;
+                this.width = this.width + p;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
     }
 
     endBattleDisplay() {
@@ -264,6 +284,7 @@ export default class BossBattleScene extends Phaser.Scene {
         this.events.emit("Message", endMessage);
         this.time.addEvent({ delay: 3000, callback: this.endBattle, callbackScope: this });   
     }
+    width: number = 0; 
 
     checkEndBattle() {     
         var vict = true;   
@@ -282,9 +303,49 @@ export default class BossBattleScene extends Phaser.Scene {
 
         if (vict) {
             this.victory = true;
+
+            var elem = document.getElementById("pmeterBar");
+
+            if (this.width < 0) {
+                this.width = 0;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
+            
+            else {
+                var elem = document.getElementById("pmeterBar");
+                var p = 17;
+                this.width = this.width - p;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
         }
         if (loss) {
             this.victory = false;
+
+            var elem = document.getElementById("pmeterBar");
+
+            if (this.width >= 100) {
+                this.width = 100;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
+            
+            else {
+                var elem = document.getElementById('pmeterBar');
+                var p = 17;
+                this.width = this.width + p;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                    elem.innerHTML = this.width + "%";
+                }
+            }
         }
         return vict || loss;
     }
