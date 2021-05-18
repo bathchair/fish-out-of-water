@@ -57,6 +57,6 @@ License: https://creativecommons.org/publicdomain/zero/1.0/
 
 
 The following document if a final version of our concept documentation indicating what has been indicated in the final game versus the concept document. 
-[Design Concept Final.pdf](https://github.com/Spring-2021-CISC374/construction_crew/files/6490463/Design.Concept.Final.pdf)
+[Design Concept Final.pdf](https://github.com/Spring-2021-CISC374/fish-out-of-water/blob/master/src/assets/Game%20Design%20Document.pdf)
 
 
