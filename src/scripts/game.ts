@@ -3,6 +3,7 @@ import LevelOneScene from './scenes/levelOneScene'
 import LevelTwoScene from './scenes/levelTwoScene'
 import InstructionScene from './scenes/InstructionScene'
 import PreloadScene from './scenes/preloadScene'
+import TitleScene from './scenes/TitleScene'
 import BattleScene from './scenes/BattleScene'
 import BossBattleScene from './scenes/BossBattleScene'
 import QuestionScene1 from './scenes/QuestionScene1'
@@ -38,7 +39,7 @@ const config: GameConfig = {
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT
   },
-  scene: [PreloadScene, InstructionScene, LevelOneScene, LevelTwoScene, PipeScene, 
+  scene: [PreloadScene, TitleScene, InstructionScene, LevelOneScene, LevelTwoScene, PipeScene, 
     BattleIntro, BossBattleIntro, CombatInstructions, BattleScene, BossBattleScene, UIScene, BossUIScene,
     QuestionScene1, QuestionScene2, QuestionScene3, QuestionScene4, QuestionScene5, QuestionScene6, EndingScene,
     QuestionScene1A, QuestionScene2A, QuestionScene3A, QuestionScene5A],
