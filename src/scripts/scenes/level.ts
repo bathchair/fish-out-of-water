@@ -559,6 +559,17 @@ export default class Level extends Phaser.Scene {
 
 	//npc1 (I know I know Im sorry)
 	QuestionTwo(){
+
+		var elem = document.getElementById('pmeterBar');
+			
+		if (elem != null){
+            var w = (parseInt)(elem.style.width);
+
+                if (w < 100) {
+                        this.scene.start('EndingScene');
+                }
+        }
+
 		if (this.registry.get("B1") == 'D'){
 			//right answer
 			this.player.x = 415
@@ -567,9 +578,6 @@ export default class Level extends Phaser.Scene {
 			this.createMessageBox("*Gasp!* You have been teleported!\nGood job! Right answer!")
 			this.time.addEvent({ delay: 2250, callback: this.zoomOut, callbackScope: this });
 			this.time.addEvent({ delay: 4500, callback: this.resetZoom, callbackScope: this });
-
-			//var width = 0;
-			var elem = document.getElementById('pmeterBar');
 
 			// pmeter attributes
 			if (this.width < 0) {
@@ -625,6 +633,17 @@ export default class Level extends Phaser.Scene {
 
 	//npc2
 	QuestionThree(){
+
+		var elem = document.getElementById('pmeterBar');
+			
+		if (elem != null){
+            var w = (parseInt)(elem.style.width);
+
+				if (w < 100) {
+                        this.scene.start('EndingScene');
+                }
+        }
+
 		if (this.registry.get("C1") == 'B'){
 			//right answer
 			this.player.x = 220
@@ -690,6 +709,17 @@ export default class Level extends Phaser.Scene {
 
 		//npc 3
 		QuestionOne(){
+
+			var elem = document.getElementById('pmeterBar');
+			
+			if (elem != null){
+				var w = (parseInt)(elem.style.width);
+	
+				if (w < 100) {
+							this.scene.start('EndingScene');
+					}
+			}
+
 			if (this.registry.get("A1") == 'A'){
 				//right answer
 				if(this.nextSceneKey != '')
@@ -754,6 +784,16 @@ export default class Level extends Phaser.Scene {
 
 	//npc 1
 	QuestionFour(){
+
+		var elem = document.getElementById('pmeterBar');
+			
+		if (elem != null){
+            var w = (parseInt)(elem.style.width);
+
+			if (w < 100) {
+                        this.scene.start('EndingScene');
+                }
+        }
 		
 		if (this.registry.get("D1") == 'D'){
 			//right answer
@@ -818,6 +858,17 @@ export default class Level extends Phaser.Scene {
 
 	//npc 2
 	QuestionFive(){
+
+		var elem = document.getElementById('pmeterBar');
+			
+		if (elem != null){
+            var w = (parseInt)(elem.style.width);
+
+			if (w < 100) {
+                        this.scene.start('EndingScene');
+                }
+        }
+
 		if (this.registry.get("E1") == 'B'){
 			//right answer
 			this.player.x = 290
@@ -880,6 +931,17 @@ export default class Level extends Phaser.Scene {
 	}
 		//npc 3 (last, if right go to boss or end or whatever)
 		QuestionSix(){
+
+			var elem = document.getElementById('pmeterBar');
+			
+			if (elem != null){
+				var w = (parseInt)(elem.style.width);
+	
+				if (w < 100) {
+						this.scene.start('EndingScene');
+					}
+			}
+
 			this.player.x = 500
 			this.player.y = 500
 			if (this.registry.get("F1") == 'A'){
