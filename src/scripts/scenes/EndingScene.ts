@@ -17,6 +17,7 @@ export default class EndingScene extends Phaser.Scene {
         } else {
             this.createLossEnding();
         }
+
         // listening for spacebar
         this.input.keyboard.on("keydown", this.onKeyInput, this);
     }
@@ -61,8 +62,17 @@ export default class EndingScene extends Phaser.Scene {
         var introText = this.add.text(width / 2 - 200 + 15, height / 2 - 200 + 100, "You lose!\n\nPress 'R' to restart!", specStyle);
     }
 
+    width: number = 0; 
+
     onKeyInput(event) {
-        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.R) {
+        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.R) 
+
+            var elem = document.getElementById("pmeterBar");
+
+                this.width = 0;
+                if (elem != null) {
+                    elem.style.width = this.width + "%";
+                }
             this.scene.start("LevelOneScene");
         }
     }
