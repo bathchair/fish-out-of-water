@@ -258,7 +258,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = 100;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
             
@@ -268,7 +268,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = this.width + p;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
     }
@@ -312,7 +312,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = 0;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
             
@@ -322,7 +322,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = this.width - p;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
         }
@@ -335,7 +335,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = 100;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
             
@@ -345,7 +345,7 @@ export default class BossBattleScene extends Phaser.Scene {
                 this.width = this.width + p;
                 if (elem != null) {
                     elem.style.width = this.width + "%";
-                    elem.innerHTML = this.width + "%";
+                    //elem.innerHTML = this.width + "%";
                 }
             }
         }
