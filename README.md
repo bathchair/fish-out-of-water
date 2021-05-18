@@ -7,9 +7,10 @@
 - *Taylor Fields*
 
 ## Instructions for running the game
-- ## Install dependencies
-- $ npm install
+- ## Play online!
+- $ https://spring-2021-cisc374.github.io/fish-out-of-water/final
 - ## Start the local development server (on port 8080)
+- $ npm install 
 - $ npm start
 
 ## Instructions for movement in game
@@ -56,5 +57,7 @@ Link: https://freesound.org/people/GameAudio/sounds/220173/#
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
 
-## Gameplay video link
+The following document if a final version of our concept documentation indicating what has been indicated in the final game versus the concept document. 
+[Design Concept Final.pdf](https://github.com/Spring-2021-CISC374/fish-out-of-water/blob/master/src/assets/Game%20Design%20Document.pdf)
+
 

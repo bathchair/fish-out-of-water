@@ -89,12 +89,12 @@ export default class BossBattleScene extends Phaser.Scene {
         this.add.existing(finalBoss);
         finalBoss.anims.play('enemy-pufferfish');
 
-        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", 100, "orca", 3);
+        var orca = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-orca", null, "Orca", 150, "orca", 3);
         this.add.existing(orca);
         orca.visible = false;
         orca.setDescription("Name: Orca\nHealth: 100HP\nStrengths: Apex predator\n Weaknesses: pollution");
 
-        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", 100, "shrimp", 1);
+        var shrimp = new PlayerCharacter(this, this.fightPos1, fightHeight, "shift-shrimp", null,"Shrimp", 150, "shrimp", 1);
         this.add.existing(shrimp);
         shrimp.visible = false;
         shrimp.setDescription("Name: Shrimp\nHealth: 100HP\nStrengths: abundant\nWeaknesses: natural prey");
@@ -108,9 +108,9 @@ export default class BossBattleScene extends Phaser.Scene {
 
         if (this.extraHealth) {
             console.log('extra health');
-            fish.setHP(150);
-            orca.setHP(150);
-            shrimp.setHP(150);
+            fish.setHP(200);
+            orca.setHP(200);
+            shrimp.setHP(200);
         }
 
         // array with heroes
@@ -130,6 +130,8 @@ export default class BossBattleScene extends Phaser.Scene {
         this.units = this.units.concat(this.enemies);
 
         this.index = -1;
+
+        this.updateDamages();
 
         // Run UI Scene at the same time
 

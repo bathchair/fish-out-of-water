@@ -65,8 +65,7 @@ export default class EndingScene extends Phaser.Scene {
     width: number = 0; 
 
     onKeyInput(event) {
-        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.R) {
-            this.scene.switch("LevelOneScene");
+        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.R) 
 
             var elem = document.getElementById("pmeterBar");
 
@@ -74,6 +73,7 @@ export default class EndingScene extends Phaser.Scene {
                 if (elem != null) {
                     elem.style.width = this.width + "%";
                 }
+            this.scene.start("LevelOneScene");
         }
     }
 

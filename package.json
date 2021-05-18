@@ -1,13 +1,13 @@
 {
-  "name": "educational-phaser-game-template",
+  "name": "educational-game-team-1-ishika-dea-aidan-taylor",
   "version": "0.0.2",
-  "description": "Phaser 3 starter template for educational games, using TypeScript, webpack, and Github Pages.",
+  "description": "Fish out of Water is an educational game designed to teach users about sewer pollution and health",
   "homepage": "https://github.com/acbart/educational-phaser-game-template#readme",
   "main": "index.js",
   "game": {
     "url": "fish-out-of-water",
-    "shortName": "EdGame",
-    "name": "Educational Phaser Game Template"
+    "shortName": "FOW",
+    "name": "Fish out of Water"
   },
   "author": {
     "name": "Austin Cory Bart",
