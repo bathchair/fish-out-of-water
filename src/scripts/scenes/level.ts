@@ -189,7 +189,8 @@ export default class Level extends Phaser.Scene {
 			}
 			else {
 				this.game.scene.start('BossBattleScene', {extraDamage: false, extraHealth: false, extraLife: false})
-				this.scene.pause(); 
+				this.scene.sleep()
+				
 			}
 			this.player.y = this.player.y - 20;
 			this.pauseMovement = true

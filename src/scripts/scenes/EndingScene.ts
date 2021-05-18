@@ -63,7 +63,7 @@ export default class EndingScene extends Phaser.Scene {
 
     onKeyInput(event) {
         if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.R) {
-            this.scene.switch("LevelOneScene");
+            this.scene.start("LevelOneScene");
         }
     }
 
