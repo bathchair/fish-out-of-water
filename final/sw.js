@@ -1,4 +1,4 @@
-importScripts("/fish-out-of-water/finalprecache-manifest.a3209acf9b23f7deb366c7f4c25beae3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/fish-out-of-water/finalprecache-manifest.a566e382b05c77115cd4997c9be967c3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * You should only modify this, if you know what you are doing.
