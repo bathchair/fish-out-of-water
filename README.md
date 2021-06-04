@@ -1,10 +1,7 @@
 # Fish out of Water
 
 ## Authors
-- *Ishika Govil*
-- *Dea Harjianto*
-- *Aidan Conley*
-- *Taylor Fields*
+Ishika Govil, Dea Harjianto, Aidan Conley, Taylor Fields
 
 ## Instructions for running the game
 - ## Play online!
